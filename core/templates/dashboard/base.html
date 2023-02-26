@@ -1,0 +1,49 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <title>Your portfolio</title>
+      <!-- Favicon -->
+      <link rel="shortcut icon" href="{% static 'assets-dashboard/images/favicon.ico' %}" />
+  
+      <link rel="stylesheet" href="{% static 'assets-dashboard/css/libs.min.css' %}">
+      <link rel="stylesheet" href="{% static 'assets-dashboard/css/coinex.css' %}">  </head>
+  <body class=" ">
+    
+    {% block content %}
+      
+    {% endblock content %}
+
+      <footer class="footer">
+          <div class="footer-body">
+              <ul class="left-panel list-inline mb-0 p-0">
+
+              </ul>
+             
+          </div>
+      </footer>    </main>
+     
+    <!-- Wrapper End-->
+    <!-- offcanvas start -->
+    <script>
+      document.getElementById('a_trade').innerHTML
+      function switch_trade(){
+         document.getElementById('a_trade').innerHTML == "You are now in auto trade"
+      }
+   </script>
+    <!-- Backend Bundle JavaScript -->
+    <script src="{% static 'assets-dashboard/js/libs.min.js' %}"></script>
+    <!-- widgetchart JavaScript -->
+    <script src="{% static 'assets-dashboard/js/charts/widgetcharts.js' %}"></script>
+    <!-- fslightbox JavaScript -->
+    <script src="{% static 'assets-dashboard/js/fslightbox.js' %}"></script>
+    <script src="{% static 'assets-dashboard/js/countdown.js' %}"></script>
+    <script src="{% static 'assets-dashboard/js/prism.mini.js' %}"></script>
+    <!-- app JavaScript -->
+    <script src="{% static 'assets-dashboard/js/app.js' %}"></script>
+    <!-- apexchart JavaScript -->
+    <script src="{% static 'assets/js/charts/apexcharts.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,27 @@
+{% extends "base_.html" %}
+{% load static %}
+
+{% block content %}
+<br><br><br><br>
+  <section style="padding:25px;">
+    <p style="font-size:16px;" class="lead text-center">Hey there! If you just submitted a quick trade, regular or initial deposit or you have a pending request, please wait patiently while the status of your transaction is verified and updated to your portfolio balance, cheers.</p> <br><br>
+    <div class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+          <span class="visually-hidden"></span>
+        </div>
+      </div>
+
+
+      <div class="form-group">
+        <form action="/" method="post">
+          {% csrf_token %}
+          <label for="">Amount</label>
+          <input type="text" required class="form-control"> <br>
+          <div class="text-center">
+            <input type="submit" class="btn btn-block btn-success text-center" value="Done">
+          </div>
+        </form>
+      </div>
+
+  </section> <br><br><br>
+{% endblock content %}

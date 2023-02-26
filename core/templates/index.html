@@ -1,0 +1,219 @@
+{% extends "base_.html" %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block content %}
+  
+{% if user.is_authenticated %}
+<section style="padding:25px;">
+    <br>
+    <div class="container" style="padding:25px;">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="hero-content" style="padding:15px">
+                    <h3 class="wow fadeInUp" data-wow-delay=".2s">Welcome {{ request.user }}</h3> <br> <br>
+                    <h5 class="wow fadeInUp" data-wow-delay=".4s">Say goodbye
+                        to <br> idle
+                        <span>
+                            <img class="text-shape" src="{% static 'assets/images/hero/text-shape.svg' %}" alt="#">
+                            money.
+                        </span>
+                    </h5>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">Invest your spare change in Bitcoin and save
+                        with<br> crypto to earn interest in real time.
+                    </p> <br>
+
+                   
+                    <div class="button wow fadeInUp mt-2" >
+                    
+                        
+
+                            <a href="{{link}}" class="btn ">Start Investing</a>
+                    
+                    </div>
+               
+                   
+
+                </div>
+
+               
+
+            </div>
+
+</section>
+  {% else %}
+ <!-- Start Hero Area -->
+ <section class="hero-area">
+    <img class="hero-shape" src="{% static 'assets/images/hero/hero-shape.svg' %}" alt="#">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="hero-content">
+                    <h4 class="wow fadeInUp" data-wow-delay=".2s">Start Envesting & Earn Money</h4>
+                    <h1 class="wow fadeInUp" data-wow-delay=".4s">Say goodbye
+                        to <br>idle
+                        <span>
+                            <img class="text-shape" src="{% static 'assets/images/hero/text-shape.svg' %}" alt="#">
+                            money.
+                        </span>
+                    </h1>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">Invest your spare change in Bitcoin and save
+                        with<br> crypto to earn interest in real time.
+                    </p>
+                   
+                </div>
+            </div>
+            <div class="col-lg-7 col-12">
+                <div class="hero-image">
+                    <img class="main-image" src="{% static 'assets/images/hero/home2-bg.png' %}" alt="#">
+                    <img class="h2-move-1" src="{% static 'assets/images/hero/h2-bit-l.png' %}" alt="#">
+                    <img class="h2-move-2" src="{% static 'assets/images/hero/h2-bit-m.png' %}" alt="#">
+                    <img class="h2-move-3" src="{% static 'assets/images/hero/h2-bit-s.png' %}" alt="#">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End Hero Area -->
+
+<!-- Start Feature Area -->
+<div class="feature section">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-title">
+                    <h3 class="wow zoomIn" data-wow-delay=".2s">Why choose us</h3>
+                    <h2 class="wow fadeInUp" data-wow-delay=".4s">Our features</h2>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">There are many features and functionalities related to our platform. Below are some listed</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".2s">
+                <div class="feature-box">
+                    <div class="tumb">
+                        <img src="{% static 'assets/images/features/feature-icon-1.png' %}" alt="">
+                    </div>
+                    <h4 class="text-title">Instant Exchange</h4>
+                    <p>Swap coins instantly and take total control of your assets using a deFI.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".4s">
+                <div class="feature-box">
+                    <div class="tumb">
+                        <img src="{% static 'assets/images/features/feature-icon-2.png' %}" alt="">
+                    </div>
+                    <h4 class="text-title">Safe & Secure</h4>
+                    <p>Perform safe and secure trades, yielding high, low and moderate returns daily, weekly, monthly.</p>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 col-12 wow fadeInUp" data-wow-delay=".6s">
+                <div class="feature-box">
+                    <div class="tumb">
+                        <img src="{% static 'assets/images/features/feature-icon-3.png' %}" alt="">
+                    </div>
+                    <h4 class="text-title">Instant Trading</h4>
+                    <p>Get started with instant trading. No drawbacks or wait times, hurry!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Features Area -->
+<section class="start-process section">
+    <div class="container">
+    <div class="row">
+    <div class="col-12">
+    <div class="section-title">
+    <h3 class="wow zoomIn" data-wow-delay=".2s" style="visibility: visible; animation-delay: 0.2s; animation-name: zoomIn;">Ready to get started?</h3>
+    <h2 class="wow fadeInUp" data-wow-delay=".4s" style="visibility: visible; animation-delay: 0.4s; animation-name: fadeInUp;">3 Steps To Start</h2>
+    <p class="wow fadeInUp" data-wow-delay=".6s" style="visibility: visible; animation-delay: 0.6s; animation-name: fadeInUp;">There are some simple steps to take in order to get started with us at cfd360.</p>
+    </div>
+    </div>
+    </div>
+    <div class="row text-center" style="padding: 15px;">
+    <div class="col-lg-4 col-md-4 col-12" style="padding: 15px;">
+    <div class="single-process">
+    <span class="serial">01</span> <br>
+    <h3>Create Your Wallet</h3>
+    <p>You need to create a new wallet to be used for your investment portfolio. You must create an account in order to be accessible to such features</p>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-12" style="padding: 15px;">
+    <div class="single-process">
+    <span class="serial">02</span> <br>
+    <h3>Make Payment</h3>
+    <p>After creating an account with us and you are now part of our community, you have to make an initial investment deposit to start trading and making margins on your returns.</p>
+    </div>
+    </div>
+    <div class="col-lg-4 col-md-4 col-12" style="padding: 15px;">
+    <div class="single-process">
+    <span class="serial">03</span>
+    <h3>Buy &amp; Sell Coins</h3> <br>
+    <p>After deposit has been made your profit starts to accrue and add up yie'd. Withdraw your profit / balance anytime to your personal external wallet or to the bank</p>
+    </div>
+     </div>
+    </div>
+    </div>
+    </section>
+    
+{% endif %}
+   
+    <!-- Start Footer Area -->
+    <footer class="footer section">
+        <!-- Start Footer Top -->
+        <div class="footer-top">
+            <div class="container">
+                <div class="inner-content">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-about">
+                                <div class="logo">
+                                    <a href="index.html">
+                                        <img src="{% static 'assets/images/logo/white-logo.svg' %}" alt="#">
+                                    </a>
+                                </div>
+                                <p>Making the world a better place through constructing elegant hierarchies.</p>
+                                <h4 class="social-title">Follow Us On:</h4>
+                                <ul class="social">
+                                    <li><a href="javascript:void(0)"><i class="lni lni-facebook-filled"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-instagram"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-twitter-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-linkedin-original"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-pinterest"></i></a></li>
+                                    <li><a href="javascript:void(0)"><i class="lni lni-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-12">
+                      
+                        <div class="col-lg-2 col-md-6 col-12">
+                            <!-- Single Widget -->
+                            <div class="single-footer f-link">
+                                <h3>Support</h3>
+                                <ul>
+                                    <li><a href="javascript:void(0)">Terms and Conditions</a></li>
+                                    <li><a href="javascript:void(0)">Privacy Policy</a></li>
+                                   
+                                </ul>
+                            </div>
+                            <!-- End Single Widget -->
+                        </div>
+                       
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/ End Footer Top -->
+        <!-- Start Copyright Area -->
+       
+    </footer>
+    <!--/ End Footer Area -->
+
+    <!-- ========================= scroll-top ========================= -->
+    <a href="#" class="scroll-top">
+        <i class="lni lni-chevron-up"></i>
+    </a>
+{% endblock content %}

@@ -1,0 +1,39 @@
+{% extends "base_.html" %}
+{% load static %}
+
+{% block content %}
+<section style="padding:25px;">
+    <br><br><br><br>
+    <div class="container" style="padding:25px;">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-12 col-12">
+                <div class="hero-content" style="padding:15px">
+                    <h3 class="wow fadeInUp" data-wow-delay=".2s">Welcome to Cfd360 investment portfolio</h3> <br> <br>
+                    <h5 class="wow fadeInUp" data-wow-delay=".4s">Say goodbye
+                        to <br> idle
+                        <span>
+                            <img class="text-shape" src="{% static 'assets/images/hero/text-shape.svg' %}" alt="#">
+                            money.
+                        </span>
+                    </h5>
+                    <p class="wow fadeInUp" data-wow-delay=".6s">Invest your spare change in Bitcoin and save
+                        with<br> crypto to earn interest in real time.
+                    </p> <br>
+
+       
+                    <div class="button wow fadeInUp mt-2" >
+                      
+                        <a href="{% url 'core:invest' slug=profile.slug %}"  class="btn">Start Investing</a>
+                    </div>
+                
+                
+                   
+
+                </div>
+
+               
+
+            </div>
+
+</section>
+{% endblock content %}
