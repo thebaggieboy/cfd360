@@ -30,6 +30,10 @@ STATUS = (
 	('Pending', 'Pending'), 
 	('Completed', 'Completed')
 )
+VERIFICATION_STATUS = (
+	('Pending', 'Pending'), 
+	('Verified', 'Verified')
+)
 
 WITHDRAW_CHOICE = (
 	('Bank', 'Bank'), 
@@ -136,6 +140,8 @@ class UserProfile(models.Model):
     amount = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     payment_method = models.CharField(max_length=250, null=True, blank=True, choices=WITHDRAW_CHOICE, default='Bitcoin')
     slug = models.SlugField(max_length=250,blank=True, null=True)
+    verification_status = models.CharField(choices=VERIFICATION_STATUS, default='Pending', max_length=250, null=True, blank=True,)
+    
 
     date_created = models.DateTimeField(max_length=250, null=True, blank=True, default=timezone.now)
 
