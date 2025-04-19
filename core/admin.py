@@ -7,9 +7,9 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 User = get_user_model()
 
-from .models import UserProfile, BaseUserManager, AbstractBaseUser, Wallets, Deposits, Withdraw, CustomUser, Transaction, Banks
+from .models import  BaseUserManager, AbstractBaseUser, Wallets, Deposits, Withdraw, Transaction, Banks
 
-
+from accounts.models import Profile, AccountUser
 
 
 class UserAdmin(BaseUserAdmin):
@@ -46,8 +46,8 @@ class UserProfileAdmin():
     search_fields = ['user']
     ordering = ['-date_created']
 
-admin.site.register(CustomUser, UserAdmin)
-admin.site.register(UserProfile)
+admin.site.register(AccountUser, UserAdmin)
+admin.site.register(Profile)
 admin.site.register(Banks)
 admin.site.register(Wallets)
 admin.site.register(Transaction)

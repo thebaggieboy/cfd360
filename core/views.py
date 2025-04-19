@@ -11,10 +11,15 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, View, CreateView, TemplateView, UpdateView
 from django.contrib import messages
-from .forms import ProfileForm,  WithdrawForm, DepositForm
-from .models import Transaction,  UserProfile, Deposits, Withdraw, Wallets
+from .models import Transaction, Deposits, Withdraw, Wallets
+from accounts.models import  Profile
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect
+from django.contrib.auth.models import Group, User
+from rest_framework import permissions, viewsets
+
+from .serializers import DepositSerializer, WalletSerializer, TransactionSerializer
+
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
 
@@ -35,7 +40,7 @@ def is_valid_form(values):
 
 class DashboardView(DetailView):
     context_object_name = 'profile'
-    model = UserProfile
+    model = Profile
     template_name = 'account/profile.html'
     
 
@@ -166,3 +171,29 @@ def add_to_transaction(request, slug):
 
 
 
+
+ 
+
+class DepositViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Deposits.objects.all().order_by('-date_created')
+    serializer_class = DepositSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+class WalletViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Wallets.objects.all()
+    serializer_class = WalletSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+class TransactionViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = Transaction.objects.all()
+    serializer_class = TransactionSerializer
+    #permission_classes = [permissions.IsAuthenticated]
