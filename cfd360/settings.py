@@ -204,8 +204,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://127.0.0.1:3000',
     'http://localhost:8000',
     'http://127.0.0.1:8000',
-    'https://avantrades-api.onrender.com'
-   
+    'https://avantrades-api.onrender.com',
+    'https://avantrades.vercel.app'
     
 ]
 
@@ -216,7 +216,7 @@ CORS_ORIGIN_WHITELIST = [
     'http://localhost:8000',
     'http://127.0.0.1:8000',
     'https://avantrades-api.onrender.com/'
-    
+    'https://avantrades.vercel.app/'
     
     
 ]
@@ -268,4 +268,4 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = 'None'
 CSRF_COOKIE_SECURE = True
 
-CSRF_TRUSTED_ORIGINS = [ 'http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000', 'https://avantrades-api.onrender.com/']
+CSRF_TRUSTED_ORIGINS = [ 'http://localhost:8000','http://127.0.0.1:8000', 'http://localhost:3000','http://127.0.0.1:3000', 'https://avantrades-api.onrender.com/', 'https://avantrades.vercel.app/']
