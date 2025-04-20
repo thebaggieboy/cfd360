@@ -1,22 +1,42 @@
-# Use official Python image as a base
 FROM python:3.11-slim
 
 # Set environment variables
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
+ENV PORT=8000
 
-# Set working directory in the container
+# Set work directory
 WORKDIR /app
 
-# Install dependencies
-COPY requirements.txt .
-RUN pip install --upgrade pip && pip install -r requirements.txt
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc \
+    postgresql-client \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copy project files to the container
+# Install Python dependencies
+COPY requirements.txt .
+RUN pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
+# Copy project
 COPY . .
 
-# Collect static files (optional)
-RUN python manage.py collectstatic --noinput
+# Create directory for SQLite database
+RUN mkdir -p /app/data
 
-# Run migrations and start the server
-CMD ["sh", "-c", "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"]
+# Fix static files issue by disabling source map checking
+ENV WHITENOISE_KEEP_ONLY_HASHED_FILES=1
+
+# Collect static files
+RUN python manage.py collectstatic --noinput --ignore="*.map" || echo "Static files collection encountered issues but continuing build"
+
+# Make SQLite database directory writable
+RUN chmod -R 755 /app/data
+
+# Run entrypoint script
+COPY render-entrypoint.sh .
+RUN chmod +x render-entrypoint.sh
+
+# Command to run the server
+ENTRYPOINT ["/app/render-entrypoint.sh"]

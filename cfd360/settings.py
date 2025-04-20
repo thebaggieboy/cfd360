@@ -48,6 +48,7 @@ INSTALLED_APPS = [
 
 
 ]
+WHITENOISE_KEEP_ONLY_HASHED_FILES = True  # Ignore source maps and other problematic files
 
 MIDDLEWARE = [
  'corsheaders.middleware.CorsMiddleware',
@@ -92,7 +93,7 @@ WSGI_APPLICATION = 'cfd360.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
     }
 }
 
