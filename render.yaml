@@ -1,0 +1,14 @@
+services:
+  - name: avantrades-api
+    type: web
+    env: docker
+    plan: free
+    dockerfilePath: Dockerfile
+    healthCheckPath: /
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: cfd360.settings
+      - key: SECRET_KEY
+        value: django-insecure-@+4blrcpti^@m@%&xg+ec*zifp$hip9q0y&4u5!f3efor$050m
+      - key: ALLOWED_HOSTS
+        value: avantrades-api.onrender.com

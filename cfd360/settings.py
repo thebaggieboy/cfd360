@@ -3,6 +3,7 @@ from datetime import timedelta
 from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,10 +92,7 @@ WSGI_APPLICATION = 'cfd360.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'data', 'db.sqlite3'),
-    }
+       'default': dj_database_url.config(default='postgres://postgresql://avantrades_user:TQXpzEjSEVGau1zBmzLjjtLNzepOOMAr@dpg-d030e2euk2gs73etvci0-a.oregon-postgres.render.com/avantrades')
 }
 
 PASSWORD_HASHERS = [
