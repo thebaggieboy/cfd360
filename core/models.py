@@ -56,6 +56,7 @@ class Wallets(models.Model):
     balance = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     profit_margin = models.FloatField(max_length=250, null=True, blank=True, default=0.0)
     transactions = models.ForeignKey('Transaction', null=True, blank=True, on_delete=models.CASCADE)
+    
     slug = models.SlugField(max_length=250,null=True, blank=True)
     this_week = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_month = models.CharField(max_length=250, blank=True, null=True, default=0.0)
@@ -121,6 +122,7 @@ class Transaction(models.Model):
     type = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
     transaction_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    transaction_id = models.CharField(max_length=250, null=True, blank=True, default='')
     
     slug = models.SlugField(max_length=250,blank=True, null=True)
 

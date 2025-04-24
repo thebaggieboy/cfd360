@@ -22,7 +22,7 @@ class DepositSerializer(serializers.HyperlinkedModelSerializer):
 class TransactionSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Transaction
-        fields = ['id', 'email', 'amount', 'type', 'status']
+        fields = ['id', 'email', 'amount', 'type', 'status', 'transaction_date', 'transaction_id']
         
 
 
