@@ -55,12 +55,8 @@ class Wallets(models.Model):
     address = models.CharField(max_length=250, null=True, blank=True, default='')
     balance = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     profit_margin = models.FloatField(max_length=250, null=True, blank=True, default=0.0)
-    deposit = models.ForeignKey('Deposits', null=True, blank=True, on_delete=models.CASCADE)
-    withdrawals = models.ForeignKey('Withdraw', null=True, blank=True, on_delete=models.CASCADE)
     transactions = models.ForeignKey('Transaction', null=True, blank=True, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=250,null=True, blank=True)
-    
-    
     this_week = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_month = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_week_roi = models.CharField(max_length=250, blank=True, null=True, default=0.0)
@@ -69,7 +65,7 @@ class Wallets(models.Model):
 
     def save(self, *args, **kwargs):
         if not self.slug:
-            self.slug = slugify(f'{self.user.email} {self.address}')
+            self.slug = slugify(f'{self.user.email} Wallet')
         return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
@@ -124,14 +120,9 @@ class Transaction(models.Model):
     amount = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
-    
+    transaction_date = models.DateTimeField(max_length=250, null=True, blank=True)
     
     slug = models.SlugField(max_length=250,blank=True, null=True)
-
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f'{self.user.email} history')
-        return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("core:profile", kwargs={"slug":self.slug})
@@ -153,10 +144,6 @@ class Withdraw(models.Model):
     withdrawal_date = models.DateTimeField(max_length=250, null=True, blank=True)
     slug = models.SlugField(max_length=250,null=True, blank=True)
 
-    def save(self, *args, **kwargs):
-        if not self.slug:
-            self.slug = slugify(f'{self.user.email} {self.amount} {self.status}')
-        return super().save(*args, **kwargs)
 
     def get_absolute_url(self):
         return reverse("core:profile", kwargs={"slug":self.slug})
