@@ -51,7 +51,7 @@ WITHDRAW_CHOICE = (
 
 
 class Wallets(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True)
+    email = models.CharField(max_length=250, null=True, blank=True, default='')
     address = models.CharField(max_length=250, null=True, blank=True, default='')
     balance = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     profit_margin = models.FloatField(max_length=250, null=True, blank=True, default=0.0)
