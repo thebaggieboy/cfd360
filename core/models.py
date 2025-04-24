@@ -51,7 +51,8 @@ WITHDRAW_CHOICE = (
 
 
 class Wallets(models.Model):
-    email = models.CharField(max_length=250, null=True, blank=True, default='')
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True)
+    
     address = models.CharField(max_length=250, null=True, blank=True, default='')
     balance = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     profit_margin = models.FloatField(max_length=250, null=True, blank=True, default=0.0)
@@ -117,7 +118,7 @@ class Deposits(models.Model):
 	    return f'{self.user} deposited ${self.amount}'  
 
 class Transaction(models.Model):
-    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True)
+    email = models.CharField(max_length=250, null=True, blank=True, default='')
     amount = models.CharField(max_length=100, blank=True, null=True)
     type = models.CharField(max_length=100, blank=True, null=True)
     status = models.CharField(max_length=100, blank=True, null=True)
