@@ -30,6 +30,6 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
 class WalletSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Wallets
-        fields = ['id', 'user', 'balance', 'all_time_roi', 'this_week_roi', 'this_month_roi', 'deposit', 'withdrawals', 'profit_margin']
+        fields = ['id', 'user', 'balance', 'all_time_roi', 'this_week_roi', 'this_month_roi',  'profit_margin']
         
 
