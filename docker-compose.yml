@@ -8,4 +8,4 @@ services:
     ports:
       - "8000:8000"
     environment:
-      - DATABASE_URL=postgresql://avantrades_user:TQXpzEjSEVGau1zBmzLjjtLNzepOOMAr@dpg-d030e2euk2gs73etvci0-a.oregon-postgres.render.com/avantrades
+      - DATABASE_URL=postgresql://avantrades_7tc9_user:SDYwzZAWhHtp5taMgID1hXJghoBoSnya@dpg-d08u3c3uibrs73cnalhg-a.oregon-postgres.render.com/avantrades_7tc9
