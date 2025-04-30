@@ -11,14 +11,14 @@ from django.shortcuts import render, get_object_or_404
 from django.utils import timezone
 from django.views.generic import ListView, DetailView, View, CreateView, TemplateView, UpdateView
 from django.contrib import messages
-from .models import Transaction, Deposits, Withdraw, Wallets
+from .models import Transaction, Deposits, Withdraw, Wallets, InvestmentPlan
 from accounts.models import  Profile
 from django.utils.text import slugify
 from django.http import HttpResponseRedirect
 from django.contrib.auth.models import Group, User
 from rest_framework import permissions, viewsets
 
-from .serializers import DepositSerializer, WalletSerializer, TransactionSerializer
+from .serializers import DepositSerializer, WalletSerializer, TransactionSerializer, InvestmentSerializer
 
 def create_ref_code():
     return ''.join(random.choices(string.ascii_lowercase + string.digits, k=20))
@@ -196,4 +196,12 @@ class TransactionViewSet(viewsets.ModelViewSet):
     """
     queryset = Transaction.objects.all()
     serializer_class = TransactionSerializer
+    #permission_classes = [permissions.IsAuthenticated]
+
+class InvestmentViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = InvestmentPlan.objects.all()
+    serializer_class = InvestmentSerializer
     #permission_classes = [permissions.IsAuthenticated]

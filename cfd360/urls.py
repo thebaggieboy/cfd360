@@ -5,7 +5,7 @@ from django.urls import path, include
 from rest_framework import routers
 from rest_framework_simplejwt import views as jwt_views
 
-from core.views import DepositViewSet, WalletViewSet, TransactionViewSet
+from core.views import DepositViewSet, WalletViewSet, TransactionViewSet, InvestmentViewSet
 from accounts.views import UserViewSet
 
 router = routers.DefaultRouter()
@@ -13,6 +13,7 @@ router.register(r'users', UserViewSet)
 router.register(r'deposits', DepositViewSet)
 router.register(r'wallets', WalletViewSet)
 router.register(r'transactions', TransactionViewSet)
+router.register(r'investment-plans', InvestmentViewSet)
 
  
 # Wire 

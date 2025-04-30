@@ -138,6 +138,27 @@ class Transaction(models.Model):
     def __str__(self):
 	    return f'{self.user.email} {self.date_created}'
 
+class InvestmentPlan(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True,)
+    amount = models.IntegerField()
+    investment_plan = models.CharField(max_length=250, null=True, blank=True)
+    investment_duration = models.CharField(max_length=250, null=True, blank=True)
+    investment_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    status = models.CharField(choices=STATUS, default="Pending", max_length=250, null=True, blank=True)
+    weekly_roi = models.CharField(max_length=250, null=True, blank=True)
+    monthly_roi = models.CharField(max_length=250, null=True, blank=True)
+    weekly_roi_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    monthly_roi_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    slug = models.SlugField(max_length=250,null=True, blank=True)
+
+
+    def get_absolute_url(self):
+        return reverse("core:profile", kwargs={"slug":self.slug})
+
+    def __str__(self):
+	    return f'{self.user.email} investment plans'
+
+
 
 class Withdraw(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True,)

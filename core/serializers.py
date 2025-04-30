@@ -1,6 +1,6 @@
 from django.contrib.auth.models import Group, User
 from rest_framework import serializers
-from .models import Wallets, Deposits, Transaction
+from .models import Wallets, Deposits, Transaction, InvestmentPlan
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -25,7 +25,10 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'email', 'amount', 'type', 'status', 'transaction_date', 'transaction_id']
         
 
-
+class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = InvestmentPlan
+        fields = ['id', 'user', 'amount', 'investment_plan', 'status', 'investment_duration', 'investment_date', 'weekly_roi', 'monthly_roi', 'weekly_roi_date', 'monthly_roi_date']
         
 class WalletSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
