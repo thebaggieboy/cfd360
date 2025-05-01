@@ -92,7 +92,7 @@ WSGI_APPLICATION = 'cfd360.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-       'default': dj_database_url.config(default='postgres://postgresql://avantrades_7tc9_user:SDYwzZAWhHtp5taMgID1hXJghoBoSnya@dpg-d08u3c3uibrs73cnalhg-a.oregon-postgres.render.com/avantrades_7tc9')
+       'default': dj_database_url.config(default='postgres://postgresql://avantrades_0f9h_user:q026Yw5gilVeaMcFLGI7hbIUwEahGxP9@dpg-d09rqo3e5dus73cta3s0-a.oregon-postgres.render.com/avantrades_0f9h')
 }
 
 PASSWORD_HASHERS = [

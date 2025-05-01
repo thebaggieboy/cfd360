@@ -139,7 +139,8 @@ class Transaction(models.Model):
 	    return f'{self.user.email} {self.date_created}'
 
 class InvestmentPlan(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True,)
+   
+    email = models.CharField(max_length=250, null=True, blank=True)
     amount = models.IntegerField()
     investment_plan = models.CharField(max_length=250, null=True, blank=True)
     investment_duration = models.CharField(max_length=250, null=True, blank=True)
