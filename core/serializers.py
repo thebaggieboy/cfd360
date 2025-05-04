@@ -28,7 +28,7 @@ class TransactionSerializer(serializers.HyperlinkedModelSerializer):
 class InvestmentSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = InvestmentPlan
-        fields = ['id', 'email', 'amount', 'investment_plan', 'status', 'investment_duration', 'investment_date', 'weekly_roi', 'monthly_roi', 'weekly_roi_date', 'monthly_roi_date']
+        fields = ['id', 'email', 'amount', 'investment_plan', 'status', 'investment_duration', 'investment_date', 'daily_roi', 'weekly_roi', 'monthly_roi', 'weekly_roi_date', 'monthly_roi_date']
         
 class WalletSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
