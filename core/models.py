@@ -8,28 +8,24 @@ from django.contrib.auth.models import (
 )
 from django.utils import timezone
 from django.utils.text import slugify
+from django.contrib.postgres.fields import ArrayField
 
 User = settings.AUTH_USER_MODEL
 CRYPTOCURRENCY_CHOICES = (
-    ("Ask live chat for your address", "Ask live chat for your address"),
+  
     ("Bitcoin", "Bitcoin"),
     ("Ethereum", "Ethereum"),
-    ("USDC", "USDC")
+    ("USDC", "USDC"),
+    ("Litecoin", "Litecoin"),  
+    ("Tether", "Tether"),
+    ("Solana", "Solana"),
+    ("Tron", "Tron"),
+    ("Polygon", "Polygon"),
+  
 )
 
 
-CATEGORY_CHOICES = (
-    ('S', 'Shirt'),
-    ('SW', 'Sport wear'),
-    ('OW', 'Outwear')
-)
-
-LABEL_CHOICES = (
-    ('P', 'primary'),
-    ('S', 'secondary'),
-    ('D', 'danger')
-)
-
+ 
 ADDRESS_CHOICES = (
     ('B', 'Billing'),
     ('S', 'Shipping'),
@@ -43,9 +39,18 @@ VERIFICATION_STATUS = (
 	('Verified', 'Verified')
 )
 
+TRANSACTION_PAYMENT_METHOD = (
+    ('Bank', 'Bank'), 
+    ('Crypto', 'Crypto'),
+    ('Card', 'Card'),
+   
+)
+
 WITHDRAW_CHOICE = (
+    
 	('Bank', 'Bank'), 
-	('Bitcoin', 'Bitcoin')
+    ('Crypto', 'Crypto'),
+    
 )
 
 
@@ -59,11 +64,15 @@ class Wallets(models.Model):
     transactions = models.ForeignKey('Transaction', null=True, blank=True, on_delete=models.CASCADE)
     
     slug = models.SlugField(max_length=250,null=True, blank=True)
+    today = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_week = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_month = models.CharField(max_length=250, blank=True, null=True, default=0.0)
+    today_roi = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_week_roi = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     this_month_roi = models.CharField(max_length=250, blank=True, null=True, default=0.0)
     all_time_roi = models.CharField(max_length=250, blank=True, null=True, default=0.0)
+    
+    date_created = models.DateTimeField(max_length=250, null=True, blank=True)
 
     def save(self, *args, **kwargs):
         if not self.slug:
@@ -80,6 +89,10 @@ class Banks(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE,max_length=250, null=True, blank=True)
     bank_name = models.CharField(max_length=250, null=True, blank=True, default=0.0)
     bank_address = models.CharField(max_length=250, null=True, blank=True)
+    account_number = models.CharField(max_length=250, null=True, blank=True)
+    account_name = models.CharField(max_length=250, null=True, blank=True)
+    swift_code = models.CharField(max_length=250, null=True, blank=True)
+    routing_number = models.CharField(max_length=250, null=True, blank=True)
     state = models.CharField(max_length=250, null=True, blank=True)
     slug = models.SlugField(max_length=250,null=True, blank=True, )
 
@@ -124,6 +137,8 @@ class Transaction(models.Model):
     status = models.CharField(max_length=100, blank=True, null=True)
     transaction_date = models.DateTimeField(max_length=250, null=True, blank=True)
     transaction_id = models.CharField(max_length=250, null=True, blank=True, default='')
+    payment_method = models.CharField(max_length=250, null=True, blank=True, choices=TRANSACTION_PAYMENT_METHOD, default='Crypto')
+    crypto_currrency = models.CharField(max_length=250, null=True, blank=True, choices=CRYPTOCURRENCY_CHOICES, default='Bitcoin')
     
     slug = models.SlugField(max_length=250,blank=True, null=True)
 
@@ -146,13 +161,24 @@ class InvestmentPlan(models.Model):
     investment_duration = models.CharField(max_length=250, null=True, blank=True)
     investment_date = models.DateTimeField(max_length=250, null=True, blank=True)
     status = models.CharField(choices=STATUS, default="Pending", max_length=250, null=True, blank=True)
+    expected_return = models.CharField(max_length=250, null=True, blank=True)
     current_value = models.CharField(max_length=250, null=True, blank=True)
     average_return = models.CharField(max_length=250, null=True, blank=True)
+    
     daily_roi = models.CharField(max_length=250, null=True, blank=True)
     weekly_roi = models.CharField(max_length=250, null=True, blank=True)
     monthly_roi = models.CharField(max_length=250, null=True, blank=True)
+    
+    daily_interest = models.CharField(max_length=250, null=True, blank=True)
+    weekly_interest = models.CharField(max_length=250, null=True, blank=True)
+    monthly_interest = models.CharField(max_length=250, null=True, blank=True)
+    daily_roi_date = models.DateTimeField(max_length=250, null=True, blank=True)
     weekly_roi_date = models.DateTimeField(max_length=250, null=True, blank=True)
     monthly_roi_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    
+    daily_interest_date = models.DateTimeField(max_length=250, null=True, blank=True)
+    daily_transactions = ArrayField(models.CharField(max_length=250, null=True, blank=True), default=list)  
+                                             
     slug = models.SlugField(max_length=250,null=True, blank=True)
 
 
