@@ -1,14 +1,18 @@
+# Minimal render.yaml for background worker only
 services:
-  - name: avantrades-api
-    type: web
-    env: docker
+  - type: worker
+    runtime: python
+    name: investment-updater
     plan: free
-    dockerfilePath: Dockerfile
-    healthCheckPath: /
+    command: python manage.py update_investments --continuous
     envVars:
       - key: DJANGO_SETTINGS_MODULE
         value: cfd360.settings
       - key: SECRET_KEY
-        value: django-insecure-@+4blrcpti^@m@%&xg+ec*zifp$hip9q0y&4u5!f3efor$050m
-      - key: ALLOWED_HOSTS
-        value: avantrades-api.onrender.com
+        generateValue: true
+      - key: DATABASE_URL
+        value: postgres://user:pass@host:port/dbname  # Replace with your actual DB URL
+      - key: UPDATE_INTERVAL_HOURS
+        value: "24"  # Runs daily
+      # Add other required environment variables
+
