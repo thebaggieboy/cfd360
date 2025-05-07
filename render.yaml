@@ -11,7 +11,7 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: DATABASE_URL
-        value: postgres://user:pass@host:port/dbname  # Replace with your actual DB URL
+        value: postgres://postgresql://avantrades_wpxj_user:BAoMh8YgNbzp65RnTdc7UggcQTqDayNi@dpg-d0cu0d6mcj7s73avfj90-a.oregon-postgres.render.com/avantrades_wpxj  # Replace with your actual DB URL
       - key: UPDATE_INTERVAL_HOURS
         value: "24"  # Runs daily
       # Add other required environment variables
