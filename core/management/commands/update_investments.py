@@ -4,9 +4,8 @@ from django.utils import timezone
 from core.models import InvestmentPlan
 from decimal import Decimal, getcontext
 import logging
- 
-import time
-from datetime import datetime, timedelta
+from datetime import timedelta
+
 # Configure decimal precision
 getcontext().prec = 8
 
@@ -28,31 +27,22 @@ class Command(BaseCommand):
         )
 
     def handle(self, *args, **options):
-        while True:
-            now = datetime.now()
-            if now.hour == 3 and now.minute <= 5:
-                self.stdout.write(f"Running updates at {now}")
-                verbosity = options.get('verbosity', 1)
-                self.verbose = verbosity > 1
-                self.simulate = options['simulate']
-            
-                self.log("=== INVESTMENT UPDATE PROCESS STARTED ===", level=1)
-                self.log(f"Current time: {timezone.now()}", level=2)
-                self.log(f"Options: {options}", level=2)
-            
-                try:
-                    self.process_investments(options)
-                except Exception as e:
-                    self.error(f"Fatal error: {str(e)}")
-                    logger.exception("Command failed")
-                    raise
+        verbosity = options.get('verbosity', 1)
+        self.verbose = verbosity > 1
+        self.simulate = options['simulate']
+        
+        self.log("=== INVESTMENT UPDATE PROCESS STARTED ===", level=1)
+        self.log(f"Current time: {timezone.now()}", level=2)
+        self.log(f"Options: {options}", level=2)
+        
+        try:
+            self.process_investments(options)
+        except Exception as e:
+            self.error(f"Fatal error: {str(e)}")
+            logger.exception("Command failed")
+            raise
 
-                self.log("=== PROCESS COMPLETED ===", level=1)
-                
-                time.sleep(300)  # Sleep for 1 minute to avoid multiple runs in the same hour
-    time.sleep(1800)                
-                
-
+        self.log("=== PROCESS COMPLETED ===", level=1)
 
     def process_investments(self, options):
         """Main processing method"""
